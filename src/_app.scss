@@ -32,7 +32,6 @@ body {
   background-color:white;
   padding: 5%;
 }
-
 code {
   background-color: blanchedalmond;
   margin: 0.7rem 0.2rem;
@@ -40,7 +39,10 @@ code {
   color: darkgreen;
   border-radius: 2px;
 }
-
+button:disabled{
+  background-color: #757763;
+  color: #FDF2F8;
+}
 .App {
   max-width: 960px;
   font-family: sans-serif;

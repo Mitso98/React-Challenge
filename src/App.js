@@ -1,6 +1,7 @@
 import { BrowserRouter, Link } from "react-router-dom";
 import Routes from "./Routes";
 import "./_app.scss";
+
 export default function App() {
   return (
     <div className="App">

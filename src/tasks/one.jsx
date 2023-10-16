@@ -1,6 +1,20 @@
 import { BackToHome } from "../App";
+import findRemovalIndexForPalindrome from "../utils/findRemovalIndex";
+import { useState } from "react";
+import "./_one.scss";
 
 const ChallengeOne = () => {
+  const [value, setValue] = useState("");
+  const [result, setResult] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  const valueIsValid = /^[a-z]*$/.test(value) && value !== "" ? true : false;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setResult(findRemovalIndexForPalindrome(value));
+  };
+
   return (
     <>
       <BackToHome />
@@ -30,8 +44,33 @@ const ChallengeOne = () => {
 
         Note: you can show the answer as just a simple text under them
       */}
-      <input />
-      <button className="purpleButton"> Submit </button>
+      <form onSubmit={handleSubmit}>
+        <div className="challenge-one-form-container">
+          <div className="challenge-form-group">
+            <input
+              onChange={(e) => {
+                setTouched(true);
+                setValue(e.target.value);
+              }}
+            />
+            {!valueIsValid && touched && (
+              <span className="warning">
+                Please enter a string of lowercase letters{" "}
+              </span>
+            )}
+          </div>
+
+          <button
+            disabled={!valueIsValid}
+            className="purpleButton"
+            type="submit"
+          >
+            {" "}
+            Submit{" "}
+          </button>
+        </div>
+      </form>
+      <p>Result: {result}</p>
     </>
   );
 };

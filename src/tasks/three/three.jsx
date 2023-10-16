@@ -9,7 +9,7 @@ const ChallengeThree = () => {
 
   // YOU are not allowed to place this in the render function directly
   // as a jsx
-  const [componentMap] = useState({
+  const componentMap = (state) => ({
     0: <Messges count={state} />,
     1: (
       <>
@@ -26,11 +26,11 @@ const ChallengeThree = () => {
     3: <Messges count={state} />
   });
   const handleNextClick = useCallback(() => {
-    setState(state + 1);
+    setState((prevState) => (prevState < 3 ? prevState + 1 : prevState));
   }, []);
 
   const handlePreviousClick = useCallback(() => {
-    setState(state - 1);
+    setState((prevState) => (prevState > 0 ? prevState - 1 : prevState));
   }, []);
 
   return (
@@ -69,7 +69,8 @@ const ChallengeThree = () => {
         between components , the goal is to find the bug in this very simple and
         clear code not make the code work using other ways
       </h3>
-      <span> {componentMap[state]}</span>
+      <span> {componentMap(state)[state]}</span>
+
       <ActionBar
         onNextClick={handleNextClick}
         onPreviousClick={handlePreviousClick}
